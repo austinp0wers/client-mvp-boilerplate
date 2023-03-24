@@ -28,8 +28,20 @@ const Home = () => {
   };
   return (
     <div>
-      <button onClick={getCustomers}>get-customers</button>
-      <button onClick={logOut}>logout</button>
+      <div>
+        <button
+          className="w-3/6 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-black rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+          onClick={getCustomers}
+        >
+          get-customers
+        </button>
+        <button
+          className="w-3/6 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-black rounded-md hover:bg-gray-800 focus:outline-none focus:bg-gray-700"
+          onClick={logOut}
+        >
+          logout
+        </button>
+      </div>
     </div>
   );
 };
