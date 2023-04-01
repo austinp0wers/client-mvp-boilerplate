@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/modal";
 import useModal from "../../hooks/useModal";
-// import LoginSchema from "./login.validation";
+import GoogleButton from "react-google-button";
+
 const Login = (props: any) => {
   const [error, setError] = useState("");
   const signIn = useSignIn();
@@ -47,6 +48,29 @@ const Login = (props: any) => {
     }
   };
 
+  const onClickGoogleSignIn = async () => {
+    const googleAuthUrl = "http://localhost:4000/auth/google";
+    const loginWindow = window.open(
+      googleAuthUrl,
+      "_blank",
+      "width=500, height=600"
+    );
+
+    const handleMessage = (event: any) => {
+      if (event.origin !== "http://localhost:4000") return;
+      if (loginWindow) loginWindow.close();
+
+      const { access_token, expires_in, token_type, email } = event.data;
+      signIn({
+        token: access_token,
+        expiresIn: expires_in,
+        tokenType: token_type,
+        authState: { email },
+      });
+      window.removeEventListener("message", handleMessage);
+    };
+    window.addEventListener("message", handleMessage);
+  };
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -97,7 +121,19 @@ const Login = (props: any) => {
             </button>
           </div>
         </form>
-
+        <div className="mt-2 ">
+          <p className="text-center text-gray-700">
+            OR
+            <hr />
+            <GoogleButton
+              type="light"
+              onClick={onClickGoogleSignIn}
+              className="mt-2"
+            >
+              Sign in with Google
+            </GoogleButton>
+          </p>
+        </div>
         <p className="mt-8 text-xs font-light text-center text-gray-700">
           {" "}
           Don't have an account?{" "}
