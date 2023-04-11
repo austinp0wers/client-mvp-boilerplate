@@ -29,12 +29,12 @@ const Login = (props: any) => {
 
     try {
       const response = await axios.post(
-        "https://lb.dcloser.com/auth/login",
+        "http://localhost:4000/auth/login",
         values
       );
       signIn({
-        token: response.data.token.accessToken,
-        expiresIn: response.data.token.expiresIn,
+        token: response.data.tokens.accessToken,
+        expiresIn: response.data.tokens.expiresIn,
         tokenType: "Bearer",
         authState: { email: values.email },
       });

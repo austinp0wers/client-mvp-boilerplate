@@ -3,8 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductListTable from "../../components/Table/productList";
 import { extractJwtToken } from "../../helpers/jwtHelper";
+import { useSignOut } from "react-auth-kit";
+import { useNavigate } from "react-router";
 
 const ProductPage = () => {
+  const signOut = useSignOut();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
     try {
@@ -26,8 +30,13 @@ const ProductPage = () => {
     fetchProducts();
   }, []);
 
+  const logOut = () => {
+    signOut();
+    navigate("/login");
+  };
   return (
     <div>
+      <button onClick={logOut}>Logout</button>
       <h1>Product List</h1>
       <table className="w-full">
         <thead>
