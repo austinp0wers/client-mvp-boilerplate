@@ -1,6 +1,6 @@
 React Login / register Page
 
-It is a boilerplate to create a simple project which contains a login / sign-up page
+A boilerplate to create a MVP which contains a login / sign-up page / product list
 
 <b>Tech Stacks include</b>
 <li> TailwindCSS
