@@ -27,7 +27,7 @@ const Signup = () => {
       return null;
     }
     try {
-      await axios.post("https://lb.dcloser.com/auth/register/manager", values);
+      await axios.post("http://localhost:4000/auth/sign-up", values);
       navigate("/login");
     } catch (err) {
       if (err && err instanceof AxiosError)
@@ -99,6 +99,23 @@ const Signup = () => {
             </div>
             <div className="mt-4">
               <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700 undefined"
+              >
+                phone
+              </label>
+              <div className="flex flex-col items-start">
+                <input
+                  type="text"
+                  name="phone"
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                />
+              </div>
+            </div>
+            <div className="mt-4">
+              <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 undefined"
               >
@@ -116,7 +133,7 @@ const Signup = () => {
             </div>
             <div className="mt-4">
               <label
-                htmlFor="password_confirmation"
+                htmlFor="confirmPassword"
                 className="block text-sm font-medium text-gray-700 undefined"
               >
                 Confirm Password
@@ -124,7 +141,7 @@ const Signup = () => {
               <div className="flex flex-col items-start">
                 <input
                   type="password"
-                  name="password_confirmation"
+                  name="confirmPassword"
                   value={formik.values.confirmPassword}
                   onChange={formik.handleChange}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
