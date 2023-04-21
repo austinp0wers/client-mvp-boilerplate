@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ProductListTable from "../../components/Table/productList";
 import { extractJwtToken } from "../../helpers/jwtHelper";
 import { useSignOut } from "react-auth-kit";
 import { useNavigate } from "react-router";
+import Sidebar from "../../components/sideBar";
 
 const ProductPage = () => {
   const signOut = useSignOut();
@@ -31,11 +31,11 @@ const ProductPage = () => {
     navigate("/login");
   };
   return (
-    <div>
-      <button onClick={logOut}>Logout</button>
+    <div className="flex">
+      <Sidebar />
       {products.map((product: any) => (
         <div
-          className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          className="mr-3 h-full max-h-sm w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           key={product._id}
         >
           <a href="#">

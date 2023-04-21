@@ -9,7 +9,7 @@ const SideBar = () => {
     navigate("/login");
   };
   return (
-    <div className="w-64 bg-white h-screen border-r border-gray-200">
+    <div className="w-60 bg-white h-screen border-r border-gray-200">
       <div className="p-6">
         <h2 className="text-xl font-bold">Sidebar</h2>
         <ul className="mt-6">
